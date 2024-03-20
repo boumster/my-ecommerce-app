@@ -1,0 +1,39 @@
+/* HomeMainSection.css */
+
+.home-page {
+    margin: 20px;
+    padding: 20px;
+}
+
+.home-page .home-main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+
+.home-page .home-main-section p{
+    margin: 5px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.home-page .reviews {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+
+.home-page .reviews .review{
+    margin-top: 10px;
+    font-size: 15px;
+}
