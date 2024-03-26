@@ -1,10 +1,9 @@
-table{
-    display: flex;
-    justify-content: space-between;
-    margin-right: 15rem;
+table {
+    width: 100%;
 }
 
-.product-row {
+table tr {
+    margin-right: 10rem;
     display: flex;
     justify-content: space-between;
-  }
+}

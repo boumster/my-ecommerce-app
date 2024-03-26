@@ -46,7 +46,7 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="product-page">
+    <>
       <Header />
       <table>
         <tr className='product-row'>
@@ -55,6 +55,6 @@ export default function ProductPage() {
         </tr>
       </table>
       <Footer />
-    </div>
+    </>
   );
 }
