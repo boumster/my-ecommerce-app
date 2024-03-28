@@ -1,3 +1,9 @@
+/*
+Authors: Phoenix Bouma (30139717), Victor Gouttin (30169782)
+Assignment: Assignment 4
+Date: 2024-03-25
+*/
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
