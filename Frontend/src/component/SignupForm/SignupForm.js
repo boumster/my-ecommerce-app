@@ -1,4 +1,7 @@
 import { React, useState } from 'react';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:5000';
 
 export default function SignupForm({setPageState}) {
     const [username, setUsername] = useState('');
@@ -17,11 +20,24 @@ export default function SignupForm({setPageState}) {
             setError('Passwords do not match');
             return;
         }
-        // Call the signup function from the backend
+        API_Signup();
         setUsername('');
         setPassword('');
         setConfirmPassword('');
         setEmail('');
+    }
+
+    async function API_Signup(){
+        try {
+            const response = await axios.post(`${API_URL}/signup`, {
+                username: username,
+                password: password,
+                email: email
+            });
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
