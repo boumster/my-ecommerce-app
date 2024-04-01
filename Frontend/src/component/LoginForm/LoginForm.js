@@ -6,12 +6,20 @@ export default function LoginForm({setPageState}) {
     const [error, setError] = useState('');
 
     function onClick_login(){
-        return;
+        setError('');
+        if (username === '' || password === ''){
+            setError('Please fill in all fields');
+            return;
+        } 
+        // Call the login function from the backend
+        setUsername('');
+        setPassword('');
     }
 
     return (
         <div className="login">
             <h1>Login</h1>
+            {error && <p style={{color: 'red'}}>{error}</p>}
             <div className="input-group">
                 <label for="username">Username:</label>
                 <input 

@@ -8,12 +8,26 @@ export default function SignupForm({setPageState}) {
     const [error, setError] = useState('');
 
     function onClick_signup(){
-        return;
+        setError('');
+        if (username === '' || password === '' || confirmPassword === '' || email === ''){
+            setError('Please fill in all fields');
+            return;
+        } 
+        if (password !== confirmPassword){
+            setError('Passwords do not match');
+            return;
+        }
+        // Call the signup function from the backend
+        setUsername('');
+        setPassword('');
+        setConfirmPassword('');
+        setEmail('');
     }
 
     return (
         <div className="signup">
                 <h1>Signup</h1>
+                {error && <p style={{color: 'red'}}>{error}</p>}
                 <div className="input-group">
                     <label for="username">Username:</label>
                     <input 
