@@ -1,8 +1,9 @@
 // ProductList.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ProductItem from '../ProductItem/ProductItem';
 
-const ProductList = () => {
+const ProductList = ({addToCart}) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -22,13 +23,8 @@ const ProductList = () => {
         <div>
             <h1>Product List</h1>
             <ul>
-                {products.map(product => (
-                    <li key={product.id}>
-                        <img src={product.image} alt={product.name} />
-                        <p>{product.name}</p>
-                        <p>{product.description}</p>
-                        <p>${product.price}</p>
-                    </li>
+                {products.map((product, index) => (
+                    <ProductItem key={index} product={product} addToCart={addToCart}/>
                 ))}
             </ul>
         </div>
