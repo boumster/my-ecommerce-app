@@ -11,6 +11,7 @@ import './ProductPage.css';
 
 export default function ProductPage() {
   const [cart, setCart] = useState([]);
+  let auth = useAuth();
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem('cart'));
@@ -18,6 +19,7 @@ export default function ProductPage() {
     if (savedCart) {
       setCart(savedCart);
     }
+    console.log(auth);
   }, []);
 
   const addToCart = (product) => {
@@ -49,7 +51,7 @@ export default function ProductPage() {
 
   return (
     <>
-        {useAuth() ? (
+        {auth.auth ? (
             <div>
                 <Header />
                 <table>

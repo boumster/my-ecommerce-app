@@ -1,10 +1,11 @@
 import { React, useState } from 'react';
 import axios from 'axios';
-import { setAuthentication } from '../Auth/Auth';
+import { useAuth } from '../Auth/Auth';
 
 const API_URL = 'http://localhost:5000';
 
 export default function LoginForm({setPageState}) {
+    let { auth, setAuthentication } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');

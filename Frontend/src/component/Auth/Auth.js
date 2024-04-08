@@ -1,11 +1,11 @@
-
-
-let auth = false;
+import { useState } from 'react';
 
 export function useAuth() {
-    return { auth };
-}
+    const [auth, setAuth] = useState(false);
 
-export function setAuthentication(value) {
-    auth = value;
+    function setAuthentication(value) {
+        setAuth(value);
+    }
+
+    return { auth, setAuthentication };
 }
