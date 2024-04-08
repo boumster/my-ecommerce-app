@@ -1,4 +1,7 @@
 import { React, useState } from 'react';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:5000';
 
 export default function LoginForm({setPageState}) {
     const [username, setUsername] = useState('');
@@ -11,9 +14,22 @@ export default function LoginForm({setPageState}) {
             setError('Please fill in all fields');
             return;
         } 
+        API_Login();
         // Call the login function from the backend
         setUsername('');
         setPassword('');
+    }
+
+    async function API_Login(){
+        try {
+            const response = await axios.post(`${API_URL}/login`, {
+                username: username,
+                password: password
+            });
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (

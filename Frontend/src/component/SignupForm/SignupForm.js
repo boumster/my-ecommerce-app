@@ -29,7 +29,7 @@ export default function SignupForm({setPageState}) {
 
     async function API_Signup(){
         try {
-            const response = await axios.post(`${API_URL}/signup`, {
+            const response = await axios.post(`${API_URL}/register`, {
                 username: username,
                 password: password,
                 email: email

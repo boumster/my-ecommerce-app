@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, origins=['http://localhost:3000'])
 
-users = []
+users =[]
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -29,6 +31,14 @@ def login():
             return jsonify({'message': 'Login successful'}), 200
 
     return jsonify({'error': 'Incorrect username or password'}), 401
+
+
+@app.route('/products', methods=['GET'])
+def get_products():
+    return jsonify(products)
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 products = [
  {
@@ -102,10 +112,3 @@ products = [
  "image": 'images/product10.jpg'
  }
 ]
-
-@app.route('/products', methods=['GET'])
-def get_products():
-    return jsonify(products)
-
-if __name__ == '__main__':
-    app.run(debug=True)
