@@ -32,14 +32,6 @@ def login():
 
     return jsonify({'error': 'Incorrect username or password'}), 401
 
-
-@app.route('/products', methods=['GET'])
-def get_products():
-    return jsonify(products)
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
 products = [
  {
  "id": 1,
@@ -112,3 +104,11 @@ products = [
  "image": 'images/product10.jpg'
  }
 ]
+
+@app.route('/products', methods=['GET'])
+def get_products():
+    return jsonify(products)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
