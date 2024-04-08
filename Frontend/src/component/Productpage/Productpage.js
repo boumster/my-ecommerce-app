@@ -4,10 +4,13 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import ProductList from '../ProductList/ProductList';
 import Cart from '../Cart/Cart';
+import { useAuth } from '../Auth/Auth';
+import LoginForm from '../LoginForm/LoginForm';
 
 import './ProductPage.css';
 
 export default function ProductPage() {
+  const { auth } = useAuth();
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -47,14 +50,20 @@ export default function ProductPage() {
 
   return (
     <>
-      <Header />
-      <table>
-        <tr className='product-row'>
-          <td><ProductList addToCart={addToCart} /></td>
-          <td style={{ verticalAlign: 'top' }}><Cart cart={cart} removeFromCart={removeFromCart} /></td>
-        </tr>
-      </table>
-      <Footer />
+      {auth.getAuth() ? (
+        <div>
+          <Header />
+          <table>
+            <tr className='product-row'>
+              <td><ProductList addToCart={addToCart} /></td>
+              <td style={{ verticalAlign: 'top' }}><Cart cart={cart} removeFromCart={removeFromCart} /></td>
+            </tr>
+          </table>
+          <Footer />
+        </div>
+      ) : (
+        <LoginForm />
+      )}
     </>
   );
 }

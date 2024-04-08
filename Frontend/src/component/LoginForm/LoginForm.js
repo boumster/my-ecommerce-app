@@ -1,9 +1,11 @@
 import { React, useState } from 'react';
 import axios from 'axios';
+import { useAuth } from '../Auth/Auth';
 
 const API_URL = 'http://localhost:5000';
 
 export default function LoginForm({setPageState}) {
+    const auth = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -26,6 +28,9 @@ export default function LoginForm({setPageState}) {
                 username: username,
                 password: password
             });
+            if (response){
+                auth.setAuthentication(true);
+            }
             console.log(response);
         } catch (error) {
             console.error(error);
