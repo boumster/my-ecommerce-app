@@ -1,11 +1,13 @@
-import { useState } from 'react';
+let auth = false;
 
-export function useAuth() {
-    const [auth, setAuth] = useState(false);
+export const authenticate = () => {
+    auth = true;
+}
 
-    function setAuthentication(value) {
-        setAuth(value);
-    }
+export const deauthenticate = () => {
+    auth = false;
+}
 
-    return { auth, setAuthentication };
+export const useAuth = () => {
+    return auth;
 }

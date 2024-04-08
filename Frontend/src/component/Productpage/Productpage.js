@@ -5,13 +5,14 @@ import Footer from '../Footer/Footer';
 import ProductList from '../ProductList/ProductList';
 import Cart from '../Cart/Cart';
 import { useAuth } from '../Auth/Auth';
-import LoginPage from '../LoginPage/LoginPage';
+import { useNavigate } from 'react-router-dom';
 
 import './ProductPage.css';
 
 export default function ProductPage() {
+  const auth = useAuth();
+  const navigate = useNavigate();
   const [cart, setCart] = useState([]);
-  let auth = useAuth();
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem('cart'));
@@ -19,7 +20,12 @@ export default function ProductPage() {
     if (savedCart) {
       setCart(savedCart);
     }
-    console.log(auth);
+  }, []);
+
+  useEffect(() => {
+    if (!auth) {
+      navigate('/login');
+    }
   }, []);
 
   const addToCart = (product) => {
@@ -51,20 +57,14 @@ export default function ProductPage() {
 
   return (
     <>
-        {auth.auth ? (
-            <div>
-                <Header />
-                <table>
-                    <tr className='product-row'>
-                        <td><ProductList addToCart={addToCart} /></td>
-                        <td style={{ verticalAlign: 'top' }}><Cart cart={cart} removeFromCart={removeFromCart} /></td>
-                    </tr>
-                </table>
-                <Footer />
-            </div>
-        ) : (
-            <LoginPage />
-        )}
+      <Header />
+      <table>
+        <tr className='product-row'>
+          <td><ProductList addToCart={addToCart} /></td>
+          <td style={{ verticalAlign: 'top' }}><Cart cart={cart} removeFromCart={removeFromCart} /></td>
+        </tr>
+      </table>
+      <Footer />
     </>
   );
 }

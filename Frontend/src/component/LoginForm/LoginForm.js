@@ -1,11 +1,12 @@
 import { React, useState } from 'react';
 import axios from 'axios';
-import { useAuth } from '../Auth/Auth';
+import { authenticate } from '../Auth/Auth';
+import { useNavigate } from 'react-router-dom';
 
 const API_URL = 'http://localhost:5000';
 
 export default function LoginForm({setPageState}) {
-    let { auth, setAuthentication } = useAuth();
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -28,8 +29,10 @@ export default function LoginForm({setPageState}) {
                 username: username,
                 password: password
             });
-            if (response){
-                setAuthentication(true);
+            if (response.status === 200){
+                authenticate();
+                navigate('/shop');
+                console.log('Login successful!');
             }
             console.log(response);
         } catch (error) {
